@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+[x-cloak] {
+    display: none;
+}
+
+/* ************************* */
+.inputs-formularios-cortos{
+    @apply
+    block
+    md:w-52
+    sm:w-80
+    px-3
+    py-1.5
+    text-base
+    font-normal
+    text-gray-700
+    bg-white bg-clip-padding
+    border border-solid border-gray-300
+    rounded
+    transition
+    ease-in-out
+    m-0
+    capitalize
+    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none;
+}
+
+
+/* ************************************ */
+.inputs-formularios-cortos-email{
+    @apply
+    block
+    md:w-52
+    sm:w-80
+    px-3
+    py-1.5
+    text-base
+    font-normal
+    text-gray-700
+    bg-white bg-clip-padding
+    border border-solid border-gray-300
+    rounded
+    transition
+    ease-in-out
+    m-0
+    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none;
+}
+
+
+.boton-guardar{
+    @apply px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600;
+}
+/* ************************* */
+.boton-actualizar{
+    @apply px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-green-700 rounded-md hover:bg-green-600 focus:outline-none focus:bg-green-600;
+}
+/**************/
+.tabla{
+    @apply min-w-full bg-white border border-gray-300;
+}
+
+/*********************/
+.th-tabla{
+    @apply py-2 px-4 border-b;
+}
+
+.boton-eliminar{
+    @apply px-6
+    py-2.5
+    ml-1
+    mt-1
+    bg-yellow-500
+    text-white
+    font-medium
+    text-xs
+    leading-tight
+    uppercase
+    rounded
+    shadow-md
+    hover:bg-yellow-400 hover:shadow-lg
+    focus:bg-yellow-400 focus:shadow-lg focus:outline-none focus:ring-0
+    active:bg-yellow-400 active:shadow-lg
+    transition
+    duration-150
+    ease-in-out;
+}
+
+/*********************/
+.boton-editar{
+    @apply px-6
+    py-2.5
+    bg-blue-600
+    text-white
+    font-medium
+    text-xs
+    leading-tight
+    uppercase
+    rounded
+    shadow-md
+    hover:bg-blue-700 hover:shadow-lg
+    focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
+    active:bg-blue-800 active:shadow-lg
+    transition
+    duration-150
+    ease-in-out mb-2;
+}
+
+.table-tr-td{
+    @apply  px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-700;
+
+}
+
+.select-formularios{
+    @apply  appearance-none
+    block
+    w-60
+    px-3
+    py-1.5
+    text-base
+    font-normal
+    text-gray-700
+    bg-white bg-clip-padding bg-no-repeat
+    border border-solid border-gray-300
+    rounded
+    transition
+    ease-in-out
+    m-0
+    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none;
+}
+
+.calendario{
+    @apply block w-10 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none;
+}
+
