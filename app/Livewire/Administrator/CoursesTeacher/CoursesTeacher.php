@@ -29,7 +29,7 @@ class CoursesTeacher extends Component
 
 
         $teachers = Teacher::orderBy('id', 'asc')
-         ->where('name', 'like', '%' . $buscador_docente)
+         ->where('first_second_name', 'like', '%' . $buscador_docente)
          ->orWhere('cedula', 'like', '%' . $buscador_docente)
          ->orWhere('phone_number', 'like', '%' . $buscador_docente)->get();
 
@@ -39,7 +39,7 @@ class CoursesTeacher extends Component
         $records = CourseTeacher::with('course', 'teacher')
         ->orderBy('id', 'asc')
         ->whereRelation('course', 'name', 'like', '%' . $buscador_materia_docente)
-        ->orWhereRelation('teacher', 'name', 'like', '%' . $buscador_materia_docente)->paginate(6);
+        ->orWhereRelation('teacher', 'first_second_name', 'like', '%' . $buscador_materia_docente)->paginate(6);
 
         return view('livewire.administrator.courses-teacher.courses-teacher', compact('teachers', 'courses', 'records'));
     }

@@ -10,7 +10,8 @@ class Teacher extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'first_second_name',
+        'first_second_last_name',
         'cedula',
         'inss',
         'phone_number',
@@ -31,7 +32,7 @@ class Teacher extends Model
         return $this->hasMany(Course::class);
     }
 
-    
+
 
 
 

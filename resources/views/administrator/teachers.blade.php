@@ -8,7 +8,8 @@
 @stop
 
 @section('content')
-  <div class="p-5">
+
+  <div class="p-3">
     @livewire('administrator.teachers.teachers')
   </div>
 @stop

@@ -12,7 +12,6 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Rule;
 use App\Models\Student;
-use App\Models\Tutor;
 use Carbon\Carbon;
 
 class Students extends Component
@@ -25,28 +24,22 @@ class Students extends Component
     public $search = '';
 
     //datos de estudiante
-    public $name, $cod, $user_id, $tutor_id, $email, $birth_date, $age, $status;
-
-    //datos de tutor
-    public $name_tutor, $phone_number, $email_tutor, $user_id_tutor;
-    public $password = "Contraseña123@", $estudiante, $tutor_user, $tutor_record,$student_record, $selected_id;
-
+    public $name, $cod, $user_id, $tutor_id, $birth_date, $age, $status, $selected_id;
+    public $user_name;
     public $estados = [
         'Activo',
         'Suspendido',
-        'Retirado'
+        'Retirado',
+        'Graduado'
     ];
 
     public function render()
     {
         $buscador = $this->search . '%';
-        $students = Student::with('tutor')
-            ->orderBy('id', 'asc')
+        $students = Student::orderBy('id', 'asc')
             ->where('name', 'like', '%' . $buscador)
             ->orWhere('cod', 'like', '%' . $buscador)
-            ->orwhere('email', 'like', '%' . $buscador)
-            ->orWhere('status', 'like', '%' . $buscador)
-            ->orWhereRelation('tutor', 'name', '%' . $buscador)->paginate(6);
+            ->orWhere('status', 'like', '%' . $buscador)->paginate(6);
         return view('livewire.administrator.students.students', compact('students'));
     }
 
@@ -72,42 +65,23 @@ class Students extends Component
         $numero_estudiante_registrados = Student::count() + 1;
 
         $this->cod = $current_year . "-" . $primer_letra_nombre . "-" . $fecha_nacimiento_formateada . "-" . $numero_estudiante_registrados;
-
-
+        $this->user_name = $this->cod;
     }
    }
 
     public function store()
     {
 
-
         $this->validate([
             'name' => 'required|string',
             'cod' => 'required|unique:students,cod,except,id',
-            'user_id' => 'required',
-            'tutor_id' => 'required',
-            'email' => 'required|email|unique:students,cod,except,id',
             'age' => 'required|numeric',
             'birth_date' => 'required|date',
             'status' => 'nullable'
         ]);
-
-        //creando el usuario de tutor
-        $tutor_user = User::create([
-            'name' => ucwords(strtolower($this->name_tutor)),
-            'email' => strtolower($this->email_tutor),
-            'password' => bcrypt('Colegio123@')  // Contraseña genérica
-        ]);
-
-         // Obtener el rol "Docente" usando el nombre del rol
-         $tutorRole = Role::where('name', 'Tutor_Inmediato')->first();
-
-          // Asignar el rol de docente al usuario
-          $tutor_user->assignRole($tutorRole);
-
-          $estudiante_user = User::create([
+          $user = User::create([
             'name' => ucwords(strtolower($this->name)),
-            'email' => strtolower($this->email),
+            'user_name' => $this->user_name,
             'password' => bcrypt('Colegio123@')  // Contraseña genérica
         ]);
 
@@ -115,24 +89,23 @@ class Students extends Component
          $estudianteRole = Role::where('name', 'Estudiante')->first();
 
           // Asignar el rol de docente al usuario
-          $estudiante_user->assignRole($estudianteRole);
-
-          $tutor = new Tutor();
-          $tutor->name = $this->name_tutor;
-          $tutor->email = $this->email_tutor;
-          $tutor->phone_number = $this->phone_number;
-          $tutor->user_id = $tutor_user->id;
-          $tutor->save();
+          $user->assignRole($estudianteRole);
 
           $estudiante = new Student();
+            //validar que nada vaya vacio
+        if (empty($estudiante)) {
+            session()->flash('vacio', 'No has ingresado ningún usuario o ningún dato del formulario.');
+            return false;
+        } else {
           $estudiante->name = ucfirst(strtolower($this->name));
-          $estudiante->email = $this->email;
-          $estudiante->user_id = $estudiante_user->id;
-          $estudiante->tutor_id = $tutor->id;
+          $estudiante->user_id = $user->id;
           $estudiante->status = "Activo";
-          $estudiante->birth_day = $this->birth_date;
+          $estudiante->birth_date = $this->birth_date;
           $estudiante->age = $this->age;
+          $estudiante->cod = $this->cod;
           $estudiante->save();
+        }
+
 
           Alert::success('Estudiante', 'Estudiante registrado exitosamente');
           $this->refresh();
@@ -145,8 +118,6 @@ class Students extends Component
         $this->selected_id = $id;
         $this->name = $record->name;
         $this->cod = $record->cod;
-        $this->tutor_id = $record->tutor->name;
-        $this->email = $record->email;
         $this->birth_date = $record->birth_date;
         $this->age = $record->age;
     }
@@ -162,11 +133,4 @@ class Students extends Component
         $this->refresh();
     }
 
-    public function formatTutorPhoneNumber()
-    {
-      if(Str::length($this->phone_number) === 4)
-      {
-        $this->phone_number = $this->phone_number . '-';
-      }
-    }
 }

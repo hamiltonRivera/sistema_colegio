@@ -14,7 +14,6 @@ class Student extends Model
         'cod',
         'user_id',
         'tutor_id',
-        'email',
         'birth_date',
         'age',
         'status'
@@ -27,10 +26,6 @@ class Student extends Model
            return $this->belongsTo(User::class);
        }
 
-       public function tutor()
-       {
-           return $this->belongsTo(Tutor::class);
-       }
 
        public function grade()
        {

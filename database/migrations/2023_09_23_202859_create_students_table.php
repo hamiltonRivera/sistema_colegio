@@ -24,14 +24,6 @@ return new class extends Migration
               ->onUpdate('cascade')
               ->onDelete('cascade');
 
-             $table->unsignedBigInteger('tutor_id');
-             $table->foreign('tutor_id')
-              ->references('id')
-              ->on('tutors')
-              ->onUpdate('cascade')
-              ->onDelete('cascade');
-
-            $table->string('email')->unique();
             $table->date('birth_date');
             $table->integer('age');
             $table->string('status')->default('Activo')->nullable();

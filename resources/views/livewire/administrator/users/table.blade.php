@@ -4,6 +4,7 @@
             <tr>
                 <th scope="col" class="px-6 py-3">#</th>
                 <th scope="col" class="px-6 py-3">Nombre</th>
+                <th scope="col" class="px-6 py-3">Usuario</th>
                 <th scope="col" class="px-6 py-3">Correo</th>
                 <th scope="col" class="px-6 py-3">Rol Actual</th>
                 <th scope="col" class="px-6 py-3">Roles</th>
@@ -15,6 +16,7 @@
                 <tr>
                     <td class="py-2 px-4 border-b">{{ $loop->iteration }} </td>
                     <td class="py-2 px-4 border-b">{{ $user->name }}</td>
+                    <td class="py-2 px-4 border-b">{{ $user->user_name }}</td>
                     <td class="py-2 px-4 border-b">{{ $user->email }}</td>
                     <td class="py-2 px-4 border-b">
                         @if($user->roles->isNotEmpty())

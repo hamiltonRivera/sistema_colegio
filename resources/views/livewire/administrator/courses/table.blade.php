@@ -20,13 +20,18 @@
                 <td class="table-tr-td">{{ $loop->iteration }}</td>
                 <td class="table-tr-td">{{ $course->name }}</td>
                 <td>
+                    @can('editar_asignaturas')
                     <button type="button" class="boton-editar" wire:click="edit({{ $course->id }})">
                         <i class="fas fa-pen"></i>
                     </button>
+                    @endcan
 
+                    @can('eliminar_asignatura')
                     <button type="button" class="boton-eliminar" wire:click="destroy({{ $course->id }})" onclick="confirm('¿Seguro que vas  a eliminar el registro? ')||event.stopImmediatePropagation()">
                         <i class="fas fa-trash"></i>
                     </button>
+                    @endcan
+
                 </td>
 
             </tr>

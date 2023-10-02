@@ -11,7 +11,7 @@
             aria-label="Default select example">
             <option selected>Selecciona una opción</option>
             @foreach ($teachers as $teacher)
-                <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                <option value="{{ $teacher->id }}">{{ $teacher->first_second_name }}</option>
             @endforeach
         </select>
     </div>

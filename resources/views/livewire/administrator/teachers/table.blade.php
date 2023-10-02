@@ -17,22 +17,20 @@
             @foreach ($teachers as $teacher)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="table-tr-td">{{ $loop->iteration }}</td>
-                <td class="table-tr-td">{{ $teacher->name }}</td>
+                <td class="table-tr-td">{{ $teacher->first_second_name }}{{ $teacher->first_second_last_name }}</td>
                 <td class="table-tr-td">{{ $teacher->email }}</td>
-                <td class="table-tr-td">{{ $teacher->cedula }}</td>
-                <td class="table-tr-td">{{ $teacher->inss }}</td>
+                <td class="table-tr-td"> @can('ver_datos_sensibles-docentes'){{ $teacher->cedula }}@endcan</td>
+                <td class="table-tr-td">@can('ver_datos_sensibles-docentes'){{ $teacher->inss }}@endcan</td>
                 <td class="table-tr-td">{{ $teacher->phone_number }}</td>
                 <td class="table-tr-td">{{ $teacher->status }}</td>
                 <td>
+                    @can('editar_docente')
                     <button type="button" class="boton-editar" wire:click="edit({{ $teacher->id }})">
                         <i class="fas fa-pen"></i>
                     </button>
+                    @endcan
 
-                    <button type="button" class="boton-eliminar" wire:click="destroy({{ $teacher->id }})" onclick="confirm('¿Seguro que vas  a eliminar el registro? ')||event.stopImmediatePropagation()">
-                        <i class="fas fa-trash"></i>
-                    </button>
                 </td>
-
             </tr>
             @endforeach
         </tbody>

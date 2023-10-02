@@ -1,25 +1,22 @@
 <div>
-   <div class="lg:grid grid-cols-2 sm:grid-col-1">
-      {{-- formulario de tutor --}}
-
-      <div>
-        <div>
-            <h2>Datos del tutor</h2><hr>
-        </div>
-          @include('livewire.administrator.students.tutor.form')
-      </div>
-
-      {{-- formulario de estudiante --}}
-      <div>
-        <div>
-            <h2>Datos del estudiante</h2><hr>
+ {{-- formulario de estudiante --}}
+ <div>
+    <p class=" text-red-600 p-2 rounded">*Generar código antes de guardar</p>
+</div>
+ @can('crear_estudiante')
+ <div>
+    @include('livewire.administrator.students.form')
+</div>
+ @endcan
+     <div class="mt-3"><hr>
+        <div class="mb-3">
+            <input type="text" wire:model.live="search" class="p-2 border rounded mr-2" placeholder="Buscador sensible">
         </div>
 
         <div>
-            @include('livewire.administrator.students.form')
+          @include('livewire.administrator.students.table')
         </div>
-      </div>
-   </div>
+     </div>
 
-  
+
 </div>
