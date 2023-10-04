@@ -9,7 +9,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Rule;
 use App\Models\Grade;
-use BaconQrCode\Renderer\Color\Gray;
+use App\Models\GradeTeacher;
 use Illuminate\Support\Str;
 class Sections extends Component
 {
@@ -20,14 +20,19 @@ class Sections extends Component
     protected $paginationTheme = 'tailwind';
     #[Rule('file|max:2048')] // 2MB Max
 
-    public $grade_section, $search = '', $selected_id;
+    public $grade_section, $search = '', $search_teacher = '', $selected_id;
 
 
     public function render()
     {
+        $docentes = GradeTeacher::with('grade', 'user')
+        ->orderBy('id', 'asc')
+        ->whereRelation('grade', 'grade_section', 'like', '%' . $this->search_teacher . '%')
+        ->orWhereRelation('user','name', 'like', '%' . $this->search_teacher . '%')->paginate(6);
+
         $records = Grade::orderBy('id', 'asc')
         ->where('grade_section', 'like', '%' . $this->search . '%')->paginate(6);
-        return view('livewire.administrator.sections.sections', compact('records'));
+        return view('livewire.administrator.sections.sections', compact('records', 'docentes'));
     }
 
     public function refresh()

@@ -13,7 +13,6 @@ class Student extends Model
         'name',
         'cod',
         'user_id',
-        'tutor_id',
         'birth_date',
         'age',
         'status'
@@ -34,17 +33,12 @@ class Student extends Model
 
        public function grade_student()
        {
-        return $this->belongsTo(GradeStudent::class);
+        return $this->hasMany(GradeStudent::class);
        }
 
        public function evaluations()
         {
           return $this->hasMany(Evaluation::class);
-        }
-
-        public function getTutorAsociated()
-        {
-            return $this->tutorAsociated;
         }
 
         public function payments()

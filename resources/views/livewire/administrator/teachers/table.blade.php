@@ -17,7 +17,7 @@
             @foreach ($teachers as $teacher)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="table-tr-td">{{ $loop->iteration }}</td>
-                <td class="table-tr-td">{{ $teacher->first_second_name }}{{ $teacher->first_second_last_name }}</td>
+                <td class="table-tr-td">{{ $teacher->first_second_name }} {{ $teacher->first_second_last_name }}</td>
                 <td class="table-tr-td">{{ $teacher->email }}</td>
                 <td class="table-tr-td"> @can('ver_datos_sensibles-docentes'){{ $teacher->cedula }}@endcan</td>
                 <td class="table-tr-td">@can('ver_datos_sensibles-docentes'){{ $teacher->inss }}@endcan</td>

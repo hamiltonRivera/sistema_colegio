@@ -50,9 +50,10 @@ class RolePermissionSeeder extends Seeder
 
 
         //notas
-        Permission::create(['name' => 'registrar_nota'])->assignrole([$role1]);
-        Permission::create(['name' => 'subir_nota'])->assignrole([$role1]);
-        Permission::create(['name' => 'ver_Notas'])->syncRoles([$role1, $role2, $role3, $role5, $role6]);
+        Permission::create(['name' => 'registrar_nota'])->assignrole([$role1, $role2, $role6]);
+        Permission::create(['name' => 'editar_nota'])->assignrole([$role1, $role2, $role6]);
+        Permission::create(['name' => 'subir_nota'])->assignrole([$role1, $role2, $role6]);
+        Permission::create(['name' => 'ver_notas'])->syncRoles([$role1, $role2, $role5, $role6]);
 
          //administrativo
         //CRUD de pagos - estudiantes
@@ -86,11 +87,15 @@ class RolePermissionSeeder extends Seeder
         //asignacion estudiantes - grado
         Permission::create(['name' => 'asignar_estudiante_grado'])->syncRoles([$role6, $role5, $role2]);
         Permission::create(['name' => 'ver_estudiante_grado'])->syncRoles([$role6, $role5, $role2, $role1, $role3]);
+        Permission::create(['name' => 'editar_estudiante_grado'])->syncRoles([$role5, $role6]);
+        Permission::create(['name' => 'elimiar_estudiante_grado'])->syncRoles([$role5, $role6]);
 
         //Asignacion grado - docente guia
         Permission::create(['name' => 'Asignar_grado_docente_guia'])->syncRoles([$role5, $role6]);
         Permission::create(['name' => 'Subir_grado_docente_guia'])->syncRoles([$role5, $role6]);
         Permission::create(['name' => 'ver_grado_docente_guia'])->syncRoles([$role5, $role6, $role1, $role2, $role3]);
+        Permission::create(['name' => 'editar_grado_docente_guia'])->syncRoles([$role5, $role6]);
+        Permission::create(['name' => 'eliminar_grado_docente_guia'])->syncRoles([$role5, $role6]);
 
          //asignacion materia - docente
          Permission::create(['name' => 'asignar_materia_docente'])->syncRoles([$role5, $role6]);

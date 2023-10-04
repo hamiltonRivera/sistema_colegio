@@ -30,7 +30,13 @@
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="table-tr-td">{{ $loop->iteration }}</td>
                 <td class="table-tr-td">{{ $student->name }}</td>
-                <td class="table-tr-td">{{ $student->cod }}</td>
+                <td class="table-tr-td">
+                    @if(auth()->user() && (auth()->user()->id == $student->id || auth()->user()->hasRole(['Docente', 'Docente_coordinador', 'Rector-Dirección', 'Desarrollador'])))
+                        {{ $student->cod }}
+                    @else
+                    <p class=" text-red-600 p-2 rounded">*sin acceso a ver los demás</p>
+                    @endif
+                </td>
                 <td class="table-tr-td">{{ $student->birth_date }}</td>
                 <td class="table-tr-td">{{ $student->age }}</td>
                 <td class="table-tr-td">{{ $student->status }}</td>

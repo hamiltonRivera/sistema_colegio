@@ -39,5 +39,14 @@ class CourseSeeder extends Seeder
       Course::create([
         'name' => 'Conducta'
       ]);
+      Course::create([
+        'name' => 'Geografia'
+      ]);
+      Course::create([
+        'name' => 'Filosofia'
+      ]);
+      Course::create([
+        'name' => 'Estudios sociales'
+      ]);
     }
 }

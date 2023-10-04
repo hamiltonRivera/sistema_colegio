@@ -24,5 +24,14 @@ Route::controller(AdminController::class)->group(function(){
       Route::group(['middleware' => ['can:ver_estudiante']], function(){
         Route::get('students', 'students')->name('students');
       });
+      Route::group(['middleware' => ['can:ver_estudiante_grado']], function(){
+        Route::get('grade_students', 'grade_students')->name('grade_students');
+      });
+      Route::group(['middleware' => ['can:ver_grado_docente_guia']], function(){
+        Route::get('grade_teacher', 'grade_teacher')->name('grade_teacher');
+      });
+      Route::group(['middleware' => ['can:ver_notas']], function(){
+        Route::get('evaluations', 'evaluations')->name('evaluations');
+      });
    });
 });

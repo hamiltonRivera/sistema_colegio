@@ -340,8 +340,26 @@ return [
                 [
                     'text' => 'Estudiantes',
                     'url'  => 'private/admin/students',
-                    'icon' => 'fas fa-user-friends',
+                    'icon' => 'fas fa-user-graduate',
                     'can' => 'ver_estudiante'
+                ],
+                [
+                    'text' => 'Aula - Estudiantes',
+                    'url'  => 'private/admin/grade_students',
+                    'icon' => 'fas fa-chalkboard-teacher',
+                    'can' => 'ver_estudiante_grado'
+                ],
+                [
+                    'text' => 'Docente Guia - Aula',
+                    'url'  => 'private/admin/grade_teacher',
+                    'icon' => 'fas fa-user-tag',
+                    'can' => 'ver_grado_docente_guia'
+                ],
+                [
+                    'text' => 'Evaluaciones',
+                    'url'  => 'private/admin/evaluations',
+                    'icon' => 'fas fa-list-ol',
+                    'can' => 'ver_notas'
                 ],
             ],
         ],

@@ -43,4 +43,19 @@ class AdminController extends Controller
         return view('administrator.teachers');
     }
 
+    public function grade_students()
+    {
+        return view('administrator.grades_students');
+    }
+
+    public function grade_teacher()
+    {
+        return view('administrator.grades_coord_teachers');
+    }
+
+    public function evaluations()
+    {
+        
+    }
+
 }

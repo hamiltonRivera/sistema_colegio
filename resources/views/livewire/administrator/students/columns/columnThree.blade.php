@@ -45,6 +45,7 @@
             <button type="button" class="boton-guardar" wire:click="store()"><i class="fas fa-save"></i>
                 Registrar</button>
         @endif
+       
     </div>
 
 

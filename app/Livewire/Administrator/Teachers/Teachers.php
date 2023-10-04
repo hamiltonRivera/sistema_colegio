@@ -146,7 +146,7 @@ class Teachers extends Component
 
         //creación del usuario
         $user = User::create([
-            'name' => $this->first_second_name . $this->first_second_last_name,
+            'name' => $this->first_second_name . ' ' . $this->first_second_last_name,
             'email' => strtolower($this->email),
             'user_name' => $this->user_name,
             'password' => bcrypt('Contraseña123@'),  // Contraseña genérica
@@ -164,8 +164,8 @@ class Teachers extends Component
 
         /****** ********/
         $teacher = new Teacher();
-        $teacher->first_second_name = ucfirst(strtolower($this->first_second_name));
-        $teacher->first_second_last_name = ucfirst(strtolower($this->first_second_last_name));
+        $teacher->first_second_name = ucfirst(strtolower($this->first_second_name)) . ' ' ;
+        $teacher->first_second_last_name = ' ' . ucfirst(strtolower($this->first_second_last_name));
         $teacher->cedula = $this->cedula;
         $teacher->inss = $this->inss;
         $teacher->email = $this->email;

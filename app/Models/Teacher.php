@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Livewire\Administrator\GradesTeachers\GradesTeachers;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -31,6 +32,13 @@ class Teacher extends Model
     {
         return $this->hasMany(Course::class);
     }
+
+    public function grade()
+    {
+        return $this->hasOne(GradeTeacher::class);
+    }
+
+
 
 
 

@@ -17,7 +17,7 @@ class Evaluation extends Model
         'description'
     ];
 
-    public function studiant()
+    public function student()
     {
         return $this->belongsTo(Student::class);
     }
