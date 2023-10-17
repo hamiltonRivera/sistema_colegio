@@ -40,19 +40,12 @@ class Sections extends Component
         return redirect('/private/admin/grades');
     }
 
-    public function formatGrade()
-    {
-        if (strlen($this->grade_section) === 2) {
-            $firstChar = substr($this->grade_section, 0, 1);
-            $secondChar = strtoupper(substr($this->grade_section, 1, 1));
-            $this->grade_section = $firstChar . $secondChar;
-        }
-    }
+
 
     public function store()
     {
        $this->validate([
-        'grade_section' => 'required|string|max:2|unique:grades,grade_section,except,id',
+        'grade_section' => 'required|string|unique:grades,grade_section,except,id',
        ]);
 
        $record = new Grade();

@@ -10,7 +10,7 @@
 @section('content')
 
   <div class="p-3">
-  
+   @livewire('administrator.evaluations.evaluations')
   </div>
 @stop
 

@@ -2,27 +2,14 @@
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th scope="col" class="px-6 py-3">
-                    #
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Nombre
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    código
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Fecha de nacimieto
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Edad
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Estado
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Opciones
-                </th>
+                <th scope="col" class="px-6 py-3">#</th>
+                <th scope="col" class="px-6 py-3">Nombre</th>
+                <th scope="col" class="px-6 py-3">código</th>
+                <th scope="col" class="px-6 py-3">Fecha de nacimieto</th>
+                <th scope="col" class="px-6 py-3">Edad</th>
+                <th scope="col" class="px-6 py-3">Estado</th>
+                <th scope="col" class="px-6 py-3">Opciones</th>
+                <th scope="col" class="px-6 py-3">Ver Notas</th>
            </tr>
         </thead>
         <tbody>
@@ -40,7 +27,7 @@
                 <td class="table-tr-td">{{ $student->birth_date }}</td>
                 <td class="table-tr-td">{{ $student->age }}</td>
                 <td class="table-tr-td">{{ $student->status }}</td>
-                <td>
+                <td class="table-tr-td">
                     @can('editar_estudiante')
                     <button type="button" class="boton-editar" wire:click="edit({{ $student->id }})">
                         <i class="fas fa-pen"></i>
@@ -53,6 +40,11 @@
                     </button>
                     @endcan
                 </td>
+
+                <td>
+                    <a href="{{ route('viewEvaluation', $student->id) }}" class="boton-editar text-right" target="_blank"><i class="fas fa-search"></i></a>
+                </td>
+
             </tr>
             @endforeach
         </tbody>

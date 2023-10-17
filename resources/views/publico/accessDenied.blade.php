@@ -1,16 +1,16 @@
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 @extends('adminlte::page')
 
-@section('title', 'Evaluaciones Globales')
+@section('title', 'Acceso ')
 
 @section('content_header')
-    <h1>Evaluaciones Globales</h1>
+    <h1>Sólo el estudiante puede ver su nota</h1>
 @stop
 
 @section('content')
-  <div class="p-5">
-    @include('publico.tables_evaluations.global_evaluation')
-  </div>
+<div class="alert alert-danger">
+    <i class="fas fa-window-close"></i> {{ session('warning') }}
+</div>
 @stop
 
 @section('css')

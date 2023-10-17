@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('grade_teachers', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('user_id')
+            $table->foreignId('user_id')->unique()
              ->constrained('users');
 
-            $table->foreignId('grade_id')
+            $table->foreignId('grade_id')->unique()
               ->constrained('grades');
             $table->timestamps();
         });

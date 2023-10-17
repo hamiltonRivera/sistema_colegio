@@ -69,22 +69,22 @@ class GradeStudents extends Component
     public function asignarEstudiante()
     {
         $this->validate([
-            'student_id' => 'required',
-            'grade_id' => 'required'
+            'student_id' => 'required|unique:grade_students,student_id,except,id',
+            'grade_id' => 'required|unique:grade_students,grade_id,except,id'
         ]);
 
         // Verificar si el estudiante ya está asignado a un aula
         $existingAssignment = GradeStudent::where('student_id', $this->student_id)->exists();
 
-        if (!$existingAssignment) {
+        if ($existingAssignment) {
+            session()->flash('mensaje', 'Estudiante ya asignado.');
+            return false;
+        } else {
             $record = new GradeStudent();
             $record->student_id = $this->student_id;
             $record->grade_id = $this->grade_id;
             $record->save();
             Alert::success('Aula - Estudiante', 'Asignación individual realizada exitosamente');
-        } else {
-            session()->flash('mensaje', 'Estudiante ya asignado.');
-            return false;
         }
 
         $this->refresh();

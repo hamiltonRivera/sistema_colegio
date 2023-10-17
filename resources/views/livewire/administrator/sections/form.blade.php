@@ -1,8 +1,8 @@
 <div>
   <div class="mb-3">
     <label for="">Grado y sección</label>
-    <input type="text" name="grade_section" id="grade_section" class="inputs-formularios-cortos" wire:model="grade_section" wire:input="formatGrade" placeholder="Grado y sección:" required maxlength="2">
-    <p class=" text-red-600 p-2 rounded">*Digitar grado en numero y sección en letra</p>
+    <input type="text" name="grade_section" id="grade_section" class="inputs-formularios-cortos-email" wire:model="grade_section" placeholder="Grado y sección:">
+
   </div>
 
 
@@ -24,11 +24,12 @@
           @error('file') <span class="error">{{ $message }}</span> @enderror
         </div>
 
-        <div class="ml-2">
-          <button type="submit" class="p-2 bg-purple-400 text-white rounded hover:bg-purple-700"><i class="fas fa-upload"></i> Cargar Archivo</button>
-        </div>
-      </div>
 
+      </div>
+      <br>
+      <div class="ml-2">
+        <button type="submit" class="p-2 bg-purple-400 text-white rounded hover:bg-purple-700"><i class="fas fa-upload"></i> Cargar Archivo</button>
+      </div>
 </form>
 
 </div>

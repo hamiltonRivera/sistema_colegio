@@ -33,7 +33,7 @@ class Users extends Component
     {
         $users = User::where('name', 'like', '%' . $this->search . '%')
             ->orWhere('email', 'like', '%' . $this->search . '%')
-            ->orWhere('user_name', 'like', '%' . $this->search . '%')->paginate(10);
+            ->orWhere('user_name', 'like', '%' . $this->search . '%')->paginate(6);
 
         return view('livewire.administrator.users.users', [
             'users' => $users,

@@ -1,9 +1,6 @@
 <div>
     @can('crear_docente')
-    <div>
-        <p class=" text-red-600 rounded">*Usuario del sistema = primer apellido + primer letra del primer nombre*</p>
-        <p class=" text-red-600 rounded">*Revisar usuario antes de guardar datos*</p>
-     </div>
+   
     <div>
         @include('livewire.administrator.teachers.form')
       </div>

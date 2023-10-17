@@ -10,12 +10,7 @@
        </div>
 
        {{-- segunda columna --}}
-       <div class="mr-2">
-        <div class="text-center mb-3">
-            <h4>Asignación Masiva</h4>
-        </div>
-         @include('livewire.administrator.grade-students.mass_assigment')
-       </div>
+       
     </div>
     @endcan
 

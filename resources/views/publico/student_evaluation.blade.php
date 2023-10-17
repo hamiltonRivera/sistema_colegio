@@ -9,7 +9,7 @@
 
 @section('content')
   <div class="p-5">
-    @include('publico.tables_evaluations.individual_evaluation')
+    @include('publico.tables_evaluations.evaluationTable')
   </div>
 @stop
 

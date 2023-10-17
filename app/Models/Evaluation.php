@@ -12,6 +12,7 @@ class Evaluation extends Model
     protected $fillable = [
         'student_id',
         'course_id',
+        'teacher_id',
         'date',
         'evaluation',
         'description'
@@ -42,5 +43,10 @@ class Evaluation extends Model
 
         // Retornar el acumulado
         return $acumulate;
+    }
+
+    public function teacher()
+    {
+        return $this->belongsTo(Teacher::class);
     }
 }

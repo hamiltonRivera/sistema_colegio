@@ -13,7 +13,7 @@
      <div class="mt-3"><hr>
         <div class="mb-3">
             <input type="text" wire:model.live="search" class="p-2 border rounded mr-2" placeholder="Buscador sensible">
-            <a href="{{ route('viewEvaluationsOnly') }}" class="boton-editar"><i class="fas fa-search"></i> Ver mis evaluaciones</a>
+            
         </div>
 
         <div>

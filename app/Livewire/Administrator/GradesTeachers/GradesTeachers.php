@@ -60,9 +60,11 @@ class GradesTeachers extends Component
     public function store()
     {
         $this->validate([
-            'user_id' => 'required',
-            'grade_id' => 'required'
+            'user_id' => 'required|unique:grade_teachers,user_id,except,id',
+            'grade_id' => 'required|unique:grade_teachers,grade_id,except,id'
         ]);
+
+
 
         // Obtén el docente asociado al usuario
         $teacher = User::find($this->user_id)->teacher;
@@ -74,13 +76,24 @@ class GradesTeachers extends Component
             return false;
         }
 
-        // El docente está activo o no tiene asignado un estado, procede a guardar la asignación
+        //verificando que el docente ya esté asignado
+        $teacherAlreadyAssigned =GradeTeacher::where('teacher_id', $this->user_id)->exists();
+
+        if($teacherAlreadyAssigned)
+        {
+            session()->flash('mensaje', 'Docente ya asignado.');
+            return false;
+        }else{
+           // El docente está activo o no tiene asignado un estado, procede a guardar la asignación
         $registro = new GradeTeacher();
         $registro->user_id = $this->user_id;
         $registro->grade_id = $this->grade_id;
         $registro->save();
         Alert::success('Aula - Docente guía', 'Asignación realizada exitosamente');
         $this->refresh();
+        }
+
+
     }
 
     public function edit($id)

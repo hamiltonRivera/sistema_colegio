@@ -14,20 +14,20 @@ return new class extends Migration
         Schema::create('grade_students', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('grade_id');
+            $table->unsignedBigInteger('grade_id')->unique();
             $table->foreign('grade_id')
              ->references('id')
              ->on('grades')
              ->onUpdate('cascade')
              ->onDelete('cascade');
 
-             $table->unsignedBigInteger('student_id');
+             $table->unsignedBigInteger('student_id')->unique();
              $table->foreign('student_id')
               ->references('id')
               ->on('students')
               ->onUpdate('cascade')
               ->onDelete('cascade');
-              
+
             $table->timestamps();
         });
     }

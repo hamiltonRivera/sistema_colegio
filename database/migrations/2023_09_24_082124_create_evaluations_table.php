@@ -30,6 +30,14 @@ return new class extends Migration
                ->on('courses')
                ->onUpdate('cascade')
                ->onDelete('cascade');
+
+              $table->unsignedBigInteger('teacher_id');
+              $table->foreign('teacher_id')
+               ->references('id')
+               ->on('teachers')
+               ->onUpdate('cascade')
+               ->onDelete('cascade');
+
             $table->timestamps();
         });
     }

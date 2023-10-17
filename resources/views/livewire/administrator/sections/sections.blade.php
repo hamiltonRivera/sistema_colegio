@@ -16,13 +16,5 @@
          </div>
     </div>
 
-    <br><hr>
-    <h4>Docentes guías asignados</h4>
-    <div class="mt-5">
-        <div class="mb-3">
-            <input type="text" wire:model.live="search_teacher" class="p-2 border rounded mr-2" placeholder="Buscador sensible">
-        </div>
-        @include('livewire.administrator.sections.coord_teacher_table')
-    </div>
-
+    
 </div>

@@ -38,6 +38,11 @@ class Teacher extends Model
         return $this->hasOne(GradeTeacher::class);
     }
 
+    public function evaluations()
+    {
+        return $this->hasMany(Evaluation::class);
+    }
+
 
 
 

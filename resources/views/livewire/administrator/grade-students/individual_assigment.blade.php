@@ -23,9 +23,11 @@
                     Actualizar</button>
             @else
                 <button type="button" class="boton-guardar" wire:click="asignarEstudiante()"><i
-                        class="fas fa-save"></i> Asignación Individual</button>
+                        class="fas fa-save"></i> Asignar</button>
             @endif
         </div>
+
+
     </div>
     {{-- segunda columna --}}
     <div>
