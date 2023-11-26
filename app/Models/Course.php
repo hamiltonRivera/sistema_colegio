@@ -14,9 +14,9 @@ class Course extends Model
 
     public $timestamp = true;
 
-    public function teacher()
+    public function teachers()
     {
-        return $this->belongsTo(Course::class);
+        return $this->belongsToMany(Teacher::class, 'course_teachers');
     }
 
     public function evaluations()

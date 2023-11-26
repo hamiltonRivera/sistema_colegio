@@ -10,52 +10,72 @@
                 <th scope="col" class="px-6 py-3">Estado</th>
                 <th scope="col" class="px-6 py-3">Opciones</th>
                 <th scope="col" class="px-6 py-3">Ver Notas</th>
-           </tr>
+            </tr>
         </thead>
         <tbody>
             @foreach ($students as $student)
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="table-tr-td">{{ $loop->iteration }}</td>
-                <td class="table-tr-td">{{ $student->name }}</td>
-                <td class="table-tr-td">
-                    @if(auth()->user() && (auth()->user()->id == $student->id || auth()->user()->hasRole(['Docente', 'Docente_coordinador', 'Rector-Dirección', 'Desarrollador'])))
-                        {{ $student->cod }}
-                    @else
-                    <p class=" text-red-600 p-2 rounded">*sin acceso a ver los demás</p>
-                    @endif
-                </td>
-                <td class="table-tr-td">{{ $student->birth_date }}</td>
-                <td class="table-tr-td">{{ $student->age }}</td>
-                <td class="table-tr-td">{{ $student->status }}</td>
-                <td class="table-tr-td">
-                    @can('editar_estudiante')
-                    <button type="button" class="boton-editar" wire:click="edit({{ $student->id }})">
-                        <i class="fas fa-pen"></i>
-                    </button>
-                    @endcan
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <td class="table-tr-td">{{ $loop->iteration }}</td>
+                    <td class="table-tr-td">{{ $student->name }}</td>
+                    <td class="table-tr-td">
+                        {{-- valida que el estudiante logueado coincida con el estudiante que quiere ver de lo contrario no
+                            puede ver el codigo de los demas --}}
+                        @if (auth()->user() && auth()->user()->student && auth()->user()->student->id == $student->id)
+                            {{ $student->cod }}
+                        @else
+                            <p class="text-red-600 p-2 rounded"><i class="fas fa-times"></i></p>
+                        @endif
+                    </td>
+                    <td class="table-tr-td">
+                        @if (auth()->user() && auth()->user()->student && auth()->user()->student->id == $student->id)
+                        {{ $student->birth_date }}
+                        @else
+                           <p class="text-red-600 p-2 rounded"><i class="fas fa-times"></i></p>
+                        @endif
+                    </td>
+                    <td class="table-tr-td">
+                        @if(auth()->user() && auth()->user()->student && auth()->user()->student->id == $student->id)
+                        {{ $student->age }}
+                        @else
+                        <p class="text-red-600 p-2 rounded"><i class="fas fa-times"></i></p>
+                        @endif
+                    </td>
+                    <td class="table-tr-td">{{ $student->status }}</td>
+                    <td class="table-tr-td">
+                        @can('editar_estudiante')
+                            <button type="button" class="boton-editar" wire:click="edit({{ $student->id }})">
+                                <i class="fas fa-pen"></i>
+                            </button>
+                        @endcan
 
-                    @can('eliminar_estudiante')
-                    <button type="button" class="boton-eliminar" wire:click="destroy({{ $student->id }})" onclick="confirm('¿Seguro que vas  a eliminar el registro? ')||event.stopImmediatePropagation()">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                    @endcan
-                </td>
+                        @can('eliminar_estudiante')
+                            <button type="button" class="boton-eliminar" wire:click="destroy({{ $student->id }})"
+                                onclick="confirm('¿Seguro que vas  a eliminar el registro? ')||event.stopImmediatePropagation()">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        @endcan
+                    </td>
 
-                <td>
-                    <a href="{{ route('viewEvaluation', $student->id) }}" class="boton-editar text-right" target="_blank"><i class="fas fa-search"></i></a>
-                </td>
+                    <td>
+                        @if (auth()->user() && auth()->user()->student && auth()->user()->student->id == $student->id)
+                        <a href="{{ route('viewEvaluation', $student->id) }}" class="boton-editar text-right"
+                            target="_blank"><i class="fas fa-search"></i></a>
+                        @else
+                        <p class="text-red-600 p-2 rounded"><i class="fas fa-times"></i></p>
+                        @endif
+                    </td>
 
-            </tr>
+                </tr>
             @endforeach
         </tbody>
     </table>
     <div class=" flex justify-left">
         <nav aria-label="Page navigation example">
-          <ul class="flex list-style-none">
-            <li class="page-item disabled">
-              {{ $students->links() }}
-            </li>
-          </ul>
+            <ul class="flex list-style-none">
+                <li class="page-item disabled">
+                    {{ $students->links() }}
+                </li>
+            </ul>
         </nav>
-      </div>
+    </div>
 </div>

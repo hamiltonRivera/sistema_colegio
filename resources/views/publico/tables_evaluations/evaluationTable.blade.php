@@ -10,9 +10,10 @@
            </tr>
         </thead>
         <tbody>
-            @foreach ($notas as $evaluation)
+            @foreach ($evaluaciones as $evaluation)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="table-tr-td">{{ $loop->iteration }}</td>
+                <td class="table-tr-td">{{ $evaluation->course->name }}</td>
                 <td class="table-tr-td">{{ $evaluation->date }}</td>
                 <td class="table-tr-td">{{ $evaluation->evaluation }}</td>
                 <td class="table-tr-td">{{ $evaluation->description }}</td>
@@ -26,7 +27,7 @@
         <nav aria-label="Page navigation example">
           <ul class="flex list-style-none">
             <li class="page-item disabled">
-              {{ $notas->links() }}
+              {{-- {{ $notas->links() }} --}}
             </li>
           </ul>
         </nav>

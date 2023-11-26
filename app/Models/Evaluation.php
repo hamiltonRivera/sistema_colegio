@@ -28,23 +28,7 @@ class Evaluation extends Model
         return $this->belongsTo(Course::class);
     }
 
-    public function calcularNotaFinal()
-    {
-        $acumulate = 0;
-
-        // Obtener todas las evaluaciones del estudiante para la asignatura actual
-        $evaluations = Evaluation::where('student_id', $this->student_id)
-                                 ->where('course_id', $this->course_id)->get();
-
-        // Sumar las notas de las evaluaciones
-        foreach ($evaluations as $evaluation) {
-            $acumulate += $evaluation->nota;
-        }
-
-        // Retornar el acumulado
-        return $acumulate;
-    }
-
+    
     public function teacher()
     {
         return $this->belongsTo(Teacher::class);

@@ -16,9 +16,19 @@ class PublicController extends Controller
       $this->middleware('auth');
     }
 
-    public function viewEvaluation($student_id)
+    public function viewEvaluation()
     {
-        
+      // Obtener el estudiante autenticado
+       $student = auth()->user()->student;
+       // Verificar si el estudiante existe
+    if ($student) {
+        // Obtener todas las evaluaciones de este estudiante
+        $evaluaciones = $student->evaluations;
+      // Pasar las evaluaciones a la vista 'student_evaluation' como un arreglo
+      return view('publico.student_evaluation', compact('evaluaciones') );
+    }
+
+
     }
 
 

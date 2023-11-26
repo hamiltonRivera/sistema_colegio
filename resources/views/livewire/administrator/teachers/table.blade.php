@@ -6,6 +6,7 @@
                 <th scope="col" class="px-6 py-3">#</th>
                 <th scope="col" class="px-6 py-3">Nombre</th>
                 <th scope="col" class="px-6 py-3">Correo</th>
+                <th scope="col" class="px-6 py-3">Usuario</th>
                 <th scope="col" class="px-6 py-3">Cedula</th>
                 <th scope="col" class="px-6 py-3">Inss</th>
                 <th scope="col" class="px-6 py-3">Teléfono</th>
@@ -19,6 +20,7 @@
                 <td class="table-tr-td">{{ $loop->iteration }}</td>
                 <td class="table-tr-td">{{ $teacher->first_second_name }} {{ $teacher->first_second_last_name }}</td>
                 <td class="table-tr-td">{{ $teacher->email }}</td>
+                <td class="table-tr-td">{{ $teacher->user->user_name }}</td>
                 <td class="table-tr-td"> @can('ver_datos_sensibles-docentes'){{ $teacher->cedula }}@endcan</td>
                 <td class="table-tr-td">@can('ver_datos_sensibles-docentes'){{ $teacher->inss }}@endcan</td>
                 <td class="table-tr-td">{{ $teacher->phone_number }}</td>
