@@ -31,7 +31,9 @@ class Users extends Component
 
     public function render()
     {
-        $users = User::where('name', 'like', '%' . $this->search . '%')
+        $users = User::with('roles')
+            ->whereRelation('roles', 'name', 'like', '%' . $this->search . '%')
+            ->orWhere('name', 'like', '%' . $this->search . '%')
             ->orWhere('email', 'like', '%' . $this->search . '%')
             ->orWhere('user_name', 'like', '%' . $this->search . '%')->paginate(6);
 

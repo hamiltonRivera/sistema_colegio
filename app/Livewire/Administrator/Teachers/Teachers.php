@@ -42,7 +42,7 @@ class Teachers extends Component
             ->orWhere('inss', 'like', '%' . $buscador)
             ->orWhere('phone_number', 'like', '%' . $buscador)
             ->orWhere('email', 'like', '%' . $buscador)
-            ->orWhere('status', 'like', '%' . $buscador)->paginate(5);
+            ->orWhere('status', 'like', '%' . $buscador)->paginate(4);
         return view('livewire.administrator.teachers.teachers', compact('teachers'));
     }
 

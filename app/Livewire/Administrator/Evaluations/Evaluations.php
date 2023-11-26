@@ -27,9 +27,7 @@ class Evaluations extends Component
             $this->materias = Course::whereHas('teachers', function($query){
                        return $query->where('teachers.id', auth()->user()->teacher->id);
                       })->get();
-        } else {
-            $this->materias = Course::all();
-        }
+        } 
     }
 
     public function render()

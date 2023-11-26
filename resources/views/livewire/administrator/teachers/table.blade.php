@@ -20,9 +20,29 @@
                 <td class="table-tr-td">{{ $loop->iteration }}</td>
                 <td class="table-tr-td">{{ $teacher->first_second_name }} {{ $teacher->first_second_last_name }}</td>
                 <td class="table-tr-td">{{ $teacher->email }}</td>
-                <td class="table-tr-td">{{ $teacher->user->user_name }}</td>
-                <td class="table-tr-td"> @can('ver_datos_sensibles-docentes'){{ $teacher->cedula }}@endcan</td>
-                <td class="table-tr-td">@can('ver_datos_sensibles-docentes'){{ $teacher->inss }}@endcan</td>
+                <td class="table-tr-td">
+                    @if (auth()->user() && auth()->user()->student && auth()->user()->student->id == $student->id)
+                    {{ $teacher->user->user_name }}
+                    @else
+                    <p class="text-red-600 p-2 rounded"><i class="fas fa-times"></i></p>
+                    @endif
+                </td>
+                <td class="table-tr-td">
+                    @can('ver_datos_sensibles-docentes')
+                      @if (auth()->user() && auth()->user()->student && auth()->user()->student->id == $student->id)
+                      {{ $teacher->cedula }}
+                      @else
+                      <p class="text-red-600 p-2 rounded"><i class="fas fa-times"></i></p>
+                      @endif
+                    @endcan</td>
+                <td class="table-tr-td">
+                    @can('ver_datos_sensibles-docentes')
+                      @if (auth()->user() && auth()->user()->student && auth()->user()->student->id == $student->id))
+                      {{ $teacher->inss }}
+                      @else
+                      <p class="text-red-600 p-2 rounded"><i class="fas fa-times"></i></p>
+                      @endif
+                    @endcan</td>
                 <td class="table-tr-td">{{ $teacher->phone_number }}</td>
                 <td class="table-tr-td">{{ $teacher->status }}</td>
                 <td>
