@@ -12,64 +12,85 @@ class GradeSeeder extends Seeder
      */
     public function run()
     {
+
        Grade::create(
         [
             'grade_section' => 'Primero A',
+            'shift' => 'Matutino',
         ]
        );
+
+       Grade::create(
+        [
+            'grade_section' => 'Primero A',
+            'shift' => 'Vespertino',
+        ]
+       );
+
        Grade::create(
         [
             'grade_section' => 'Primero B',
+            'shift' => 'Matutino',
         ]
        );
        Grade::create(
         [
             'grade_section' => 'Primero C',
+            'shift' => 'Vespertino',
         ]
        );
        Grade::create(
         [
             'grade_section' => 'Segundo A',
+            'shift' => 'Matutino',
         ]
        );
        Grade::create(
         [
             'grade_section' => 'Segundo B',
+            'shift' => 'Vespertino',
         ]
        );
        Grade::create(
         [
             'grade_section' => 'Segundo C',
+            'shift' => 'Matutino',
         ]
        );
        Grade::create(
         [
             'grade_section' => 'Tercero A',
+            'shift' => 'Vespertino',
         ]
        );
        Grade::create(
         [
             'grade_section' => 'Tercero B',
+            'shift' => 'Matutino',
         ]
        );
        Grade::create(
         [
             'grade_section' => 'Tercero C',
+            'shift' => 'Vespertino',
         ]
        );
        Grade::create(
         [
             'grade_section' => 'Cuarto A',
+            'shift' => 'Matutino',
         ]
        );
        Grade::create(
         [
             'grade_section' => 'Cuarto B',
+            'shift' => 'Vespertino',
         ]
        );
        Grade::create(
         [
             'grade_section' => 'Cuarto C',
+            'shift' => 'Matutino',
         ]
        );
     }

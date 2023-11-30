@@ -10,6 +10,7 @@ class Grade extends Model
     use HasFactory;
     protected $fillable = [
         'grade_section',
+        'shift'
     ];
     public $timestamp = true;
 
